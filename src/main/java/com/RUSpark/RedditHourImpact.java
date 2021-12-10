@@ -36,7 +36,7 @@ public class RedditHourImpact {
 	  	      .getOrCreate();
 	    
   	    JavaRDD<String> lines = spark.read().textFile(InputPath).javaRDD();
-  	    /*
+  	    
   	    JavaPairRDD<Integer, Integer> data = lines.mapToPair(line -> {
   	    	String[] _line = line.split(DELIMITER);
   	    	return new Tuple2<Integer, Integer>(Instant.ofEpochSecond(Long.parseLong(_line[1]))
@@ -56,15 +56,15 @@ public class RedditHourImpact {
   	    
   	    JavaPairRDD<Integer, Integer> stats = merged.reduceByKey((value1, value2) -> value1 + value2);
   	    List<Tuple2<Integer, Integer>> times = stats.sortByKey().collect();
-  	    */
-  	    List<String> manual = lines.collect();
+  	    
+  	    // List<String> manual = lines.collect();
   	    spark.stop();
-  	    /*
+  	    
   	    for (Tuple2<Integer, Integer> time : times) {
   	    	System.out.println(time._1() + " " + time._2());
   	    }
-  	    */
   	    
+  	    /*
   	    HashMap<Integer, Integer> timesM = new HashMap<>();
 	   	for (int hour = 0; hour <= 23; hour++) {
 	   		timesM.put(hour, 0);

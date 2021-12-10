@@ -42,15 +42,15 @@ public class RedditPhotoImpact {
 	    });
 	   
 	    JavaPairRDD<Integer, Integer> counts = stats.reduceByKey((value1, value2) -> value1 + value2);
-	    // List<Tuple2<Integer, Integer>> results = counts.sortByKey().collect();
-	    List<String> manual = lines.collect();
+	    List<Tuple2<Integer, Integer>> results = counts.sortByKey().collect();
+	    // List<String> manual = lines.collect();
 	    spark.stop();
-	    /*
+	    
 	    for (Tuple2<Integer, Integer> result : results) {
 	    	System.out.println(result._1() + " " + result._2());
 	    }
-	    */
 	    
+	    /*
 	    HashMap<Integer, Integer> impacts = new HashMap<>();
 	    for (String _line : manual) { 
 	    	String[] line = _line.split(DELIMITER);
@@ -68,7 +68,7 @@ public class RedditPhotoImpact {
   	   for (Integer key : keys) {
   		   System.out.println(key + " " + impacts.get(key));
   	   }
-  	   
+  	   */
 	}
 
 }

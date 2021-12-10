@@ -56,18 +56,18 @@ public class NetflixMovieAverage {
 			return new Tuple2<Integer, Double> (rating._1, sum / rating._2.size());
 		});
 		
-		// List<Tuple2<Integer, Double>> values = averages.sortByKey().collect();
-		List<String> manual = lines.collect();
+		List<Tuple2<Integer, Double>> values = averages.sortByKey().collect();
+		// List<String> manual = lines.collect();
 		spark.stop();
 		
 		DecimalFormat decimalFormatFloor = new DecimalFormat("#.##");
 		decimalFormatFloor.setRoundingMode(RoundingMode.FLOOR);
-		/*
+		
 		for (Tuple2<Integer, Double> value : values) {
 			System.out.println(value._1() + " " + decimalFormatFloor.format(value._2()));
 		}
-		*/
 		
+		/*
 		HashMap<Integer, Tuple2<Double, Integer>> ratingsM = new HashMap<>();
 		for (String line : manual) {
 			Integer key = Integer.valueOf(line.split(DELIMITER)[0]);
@@ -88,7 +88,7 @@ public class NetflixMovieAverage {
   	   for (Integer key : keys) {
   		   System.out.println(key + " " + decimalFormatFloor.format(averagesM.get(key)));
   	   }
-	
+		 */
 	}
 
 }

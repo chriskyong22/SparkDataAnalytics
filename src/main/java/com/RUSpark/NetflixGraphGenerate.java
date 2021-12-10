@@ -71,15 +71,15 @@ public class NetflixGraphGenerate {
   	    JavaPairRDD<String, Integer> edgeCounts = edges.reduceByKey((i1, i2) -> i1 + i2);
   	    JavaPairRDD<String, Integer> sortedEdgeCounts = edgeCounts.sortByKey();
   	    
-  	    List<String> manual = lines.collect();
-  	    // List<Tuple2<String, Integer>> output = sortedEdgeCounts.collect();
+  	    // List<String> manual = lines.collect();
+  	    List<Tuple2<String, Integer>> output = sortedEdgeCounts.collect();
   	    spark.stop();
-  	    /*
+  	    
   	    for (Tuple2<?,?> tuple : output) {
   	      System.out.println("(" + tuple._1() + ") " + tuple._2());
   	    }
-		*/
-  	   
+		
+  	   /*
   	   HashMap<String, List<Integer>> pairsM = new HashMap<String, List<Integer>>();
   	   for (String line : manual) {
   		   String key = line.split(DELIMITER)[0] + " " + line.split(DELIMITER)[2];
@@ -88,7 +88,7 @@ public class NetflixGraphGenerate {
   		   }
   		   pairsM.get(key).add(Integer.parseInt(line.split(DELIMITER)[1]));
   	   }
-  	   /*
+  	   
   	   String[] _keys = (String[]) pairsM.keySet().toArray(new String[pairsM.size()]);
   	   Arrays.sort(_keys);
   	   for (String key : _keys) {
@@ -96,7 +96,7 @@ public class NetflixGraphGenerate {
   		   System.out.println(pairsM.get(key).size());
   		   System.out.println(pairsM.get(key));
   	   }
-  	   */
+  	   
   	   
   	   
   	   HashMap<String, Integer> edgesM = new HashMap<String, Integer>();
@@ -127,7 +127,8 @@ public class NetflixGraphGenerate {
   			   nonOne.add(key);
   		   }
   	   }
-  	   /*
+  	   
+  	   
   	   System.out.println("Keys that are above 1");
   	   double duplicates = 0;
   	   for (String key : nonOne) {
@@ -138,8 +139,8 @@ public class NetflixGraphGenerate {
   	   System.out.println("Total duplicates " + (duplicates - nonOne.size()));
   	   System.out.println("Total unique edges (if all keys are unique): " + totalUniqueEdges);
   	   System.out.println("Total edges found: " + totalEdges);
-  	   /*
-  	    * 
+  	   
+  	    
   	    List<Tuple2<String, List<Integer>>> sorted = customers.collect();
   	    for (Tuple2<String,List<Integer>> tuple : sorted) {
   	      System.out.println(tuple._1());
